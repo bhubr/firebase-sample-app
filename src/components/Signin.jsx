@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import firebase from 'firebase';
 
-function Signup() {
+function Signin() {
   const [data, setData] = useState({
     email: '',
     password: '',
@@ -12,7 +12,8 @@ function Signup() {
     e.preventDefault();
     firebase
       .auth()
-      .createUserWithEmailAndPassword(email, password)
+      .signInWithEmailAndPassword(email, password)
+      .then((user) => console.log('signed in', user))
       .catch(setError);
   };
   const handleChange = ({ target: { name, value } }) =>
@@ -20,10 +21,10 @@ function Signup() {
 
   const { email, password } = data;
   return (
-    <div className="Signup">
+    <div className="Signin">
       {error && <div style={{ border: '2px solid red' }}>{error.message}</div>}
       <form onSubmit={handleSubmit}>
-        <h3>Sign up</h3>
+        <h3>Sign in</h3>
         <label htmlFor="email">
           Email
           <input
@@ -50,4 +51,4 @@ function Signup() {
   );
 }
 
-export default Signup;
+export default Signin;
