@@ -6,3 +6,7 @@ code {
   background: #eee;
   color: #d04;
 }
+
+label {
+  display: block;
+}
