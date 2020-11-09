@@ -4,9 +4,14 @@
 }
 
 .Navbar ul {
+  display: flex;
   margin: 0;
 }
 
 .Navbar ul li {
   list-style-type: none;
+}
+
+.Navbar img {
+  max-height: 40px;
 }

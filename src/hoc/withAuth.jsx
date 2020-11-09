@@ -8,8 +8,19 @@ export default function withAuth(WrappedComponent) {
     useEffect(() => {
       firebase.auth().onAuthStateChanged((fbUser) => {
         if (fbUser) {
-          const { uid, displayName, email, emailVerified, photoURL } = fbUser;
-          setUser({ uid, displayName, email, emailVerified, photoURL });
+          const { uid, email, emailVerified } = fbUser;
+          firebase
+            .database()
+            .ref(`/users/${uid}`)
+            .once('value')
+            .then((snapshot) => {
+              const displayName =
+                (snapshot.val() && snapshot.val().displayName) || 'Anonymous';
+              const avatar =
+                (snapshot.val() && snapshot.val().avatar) ||
+                'https://via.placeholder.com/100x100';
+              setUser({ uid, displayName, email, emailVerified, avatar });
+            });
         } else {
           setUser(null);
         }

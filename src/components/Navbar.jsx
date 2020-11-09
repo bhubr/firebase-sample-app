@@ -16,6 +16,11 @@ function Navbar() {
             Sign out
           </button>
         </li>
+        {user && (
+          <li>
+            <img src={user.avatar} alt={user.displayName} />
+          </li>
+        )}
       </ul>
     </nav>
   );
