@@ -45,7 +45,7 @@ function Signin() {
             onChange={handleChange}
           />
         </label>
-        <button type="submit">Sign up</button>
+        <button type="submit">Sign in</button>
       </form>
     </div>
   );
